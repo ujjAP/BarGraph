@@ -1,0 +1,656 @@
+@import url('https://fonts.cdnfonts.com/css/pp-neue-montreal');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'PP Neue Montreal', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #2a343b;
+  background: #e6e2df;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.02em;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  margin: 0;
+  min-height: 100%;
+  width: 100%;
+}
+
+body {
+  min-height: 100vh;
+  background: #e7e3df;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'PP Neue Montreal', 'Avenir Next', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+}
+
+button {
+  font: inherit;
+}
+
+.page-shell {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+
+.chart-card {
+  position: relative;
+  width: min(1120px, calc(100vw - 36px));
+  min-height: auto;
+  border-radius: 20px;
+  background: rgba(246, 244, 242, 0.96);
+  border: 1px solid rgba(128, 138, 145, 0.24);
+  box-shadow: 0 10px 20px rgba(71, 77, 82, 0.08), inset 0 1px rgba(255,255,255,0.8);
+  padding: 14px 18px 12px;
+}
+
+.chart-header {
+  display: block;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgba(129, 139, 146, 0.12);
+}
+
+.chart-header h2 {
+  margin: 0;
+  font-size: clamp(1.6rem, 1.6vw, 2.2rem);
+  line-height: 1.2;
+  letter-spacing: 0;  
+  font-weight: 700;
+  color: #2b3239;
+  font-family: 'PP Neue Montreal', sans-serif;
+}
+
+.chart-header p {
+  margin: 3px 0 0;
+  font-size: 0.88rem;
+  color: #69757c;
+  font-weight: 500;
+}
+
+.section-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #818d96;
+  font-weight: 700;
+  margin-top: 9px;
+  margin-bottom: 6px;
+  display: block;
+  font-family: 'PP Neue Montreal', sans-serif;
+}
+
+.filters-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 0.65fr 1.1fr 1.25fr;
+  gap: 10px;
+  align-items: end;
+  margin-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgba(129, 139, 146, 0.12);
+}
+
+.filter-card {
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: 4px;
+  align-items: start;
+}
+
+.filter-title {
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #818d96;
+  font-weight: 700;
+  font-family: 'PP Neue Montreal', sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  grid-row: 1;
+}
+
+.header-actions {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.dropdown-button,
+.range-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0.6rem 0.9rem;
+  border-radius: 11px;
+  border: 1px solid rgba(120, 129, 136, 0.26);
+  background: rgba(255,255,255,0.22);
+  color: #39464d;
+  box-shadow: inset 0 1px rgba(255,255,255,0.9);
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-family: 'PP Neue Montreal', sans-serif;
+}
+
+.dropdown-button {
+  min-width: 0;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.range-button {
+  min-width: 0;
+  width: 100%;
+}
+
+.date-range-filter {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  grid-row: 2;
+}
+
+.date-input-group {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) 18px;
+  align-items: center;
+  gap: 4px;
+  color: #4d5a61;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.45rem 0.6rem;
+  border-radius: 9px;
+  border: 1px solid rgba(120, 129, 136, 0.26);
+  background: rgba(255,255,255,0.22);
+  box-shadow: inset 0 1px rgba(255,255,255,0.9);
+  height: 38px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.date-input-group:focus-within {
+  background: rgba(255,255,255,0.28);
+  border-color: rgba(120, 129, 136, 0.42);
+}
+
+.date-input {
+  border: 0;
+  background: transparent;
+  color: #334149;
+  font-weight: 600;
+  font-size: 0.78rem;
+  line-height: 1.2;
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+  padding: 0;
+  font-family: 'PP Neue Montreal', sans-serif;
+  width: 100%;
+  height: 20px;
+  min-height: 20px;
+  align-self: center;
+  min-width: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.date-calendar-icon {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: #334149;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+  pointer-events: none;
+}
+
+.date-input:focus {
+  outline: none;
+  color: #2b3239;
+}
+
+.date-input::-webkit-datetime-edit,
+.date-input::-webkit-datetime-edit-fields-wrapper,
+.date-input::-webkit-datetime-edit-text,
+.date-input::-webkit-datetime-edit-month-field,
+.date-input::-webkit-datetime-edit-day-field,
+.date-input::-webkit-datetime-edit-year-field {
+  color: #334149;
+  background: transparent;
+  font: 600 0.78rem/20px 'PP Neue Montreal', sans-serif;
+  letter-spacing: 0;
+  padding: 0;
+}
+
+.date-input::-webkit-datetime-edit-month-field:focus,
+.date-input::-webkit-datetime-edit-day-field:focus,
+.date-input::-webkit-datetime-edit-year-field:focus {
+  color: #334149;
+  background: transparent;
+  outline: none;
+}
+
+.date-input::selection {
+  background: transparent;
+  color: inherit;
+}
+
+.date-input::-moz-selection {
+  background: transparent;
+  color: inherit;
+}
+
+.date-input::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  cursor: pointer;
+}
+
+.caret {
+  width: 9px;
+  height: 9px;
+  flex: 0 0 9px;
+  border-right: 2px solid #58656d;
+  border-bottom: 2px solid #58656d;
+  transform: rotate(45deg) translate(-1px, -1px);
+  transform-origin: center;
+}
+
+.quick-filters-group {
+  display: flex;
+  gap: 6px;
+  flex-wrap: nowrap;
+  grid-row: 2;
+  align-items: flex-start;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 2px;
+}
+
+.quick-filters-group::-webkit-scrollbar {
+  display: none;
+}
+
+.quick-filter-button {
+  padding: 0.42rem 0.8rem;
+  border-radius: 9px;
+  border: 1px solid rgba(120, 129, 136, 0.26);
+  background: rgba(255, 255, 255, 0.18);
+  color: #39464d;
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  font-size: 0.82rem;
+  cursor: pointer;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.quick-filter-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(120, 129, 136, 0.4);
+}
+
+.quick-filter-button.is-active {
+  background: rgba(67, 185, 183, 0.15);
+  color: #43b9b7;
+  border-color: rgba(67, 185, 183, 0.4);
+  font-weight: 600;
+}
+
+.select-group,
+.range-group {
+  position: relative;
+  grid-row: 2;
+}
+
+.checklist-menu,
+.range-menu {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  width: 230px;
+  padding: 8px;
+  border-radius: 14px;
+  border: 1px solid rgba(146, 156, 162, 0.28);
+  background: rgba(255,255,255,0.82);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 18px 28px rgba(40, 47, 53, 0.12);
+  z-index: 30;
+}
+
+.range-menu {
+  width: 180px;
+}
+
+.check-item,
+.range-option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: #2f3941;
+  font-size: 1.02rem;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+}
+
+.check-item:hover,
+.range-option:hover {
+  background: rgba(151, 169, 174, 0.12);
+}
+
+.range-option {
+  justify-content: flex-start;
+}
+
+.range-option.is-selected {
+  background: rgba(123, 146, 159, 0.12);
+}
+
+.check-box-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+}
+
+.check-box {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  border: 1px solid rgba(82, 93, 98, 0.48);
+  background: rgba(255, 255, 255, 0.72);
+  position: relative;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.check-box.is-checked {
+  background: #43b9b7;
+  border-color: #43b9b7;
+}
+
+.check-box.is-checked::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 2px;
+  width: 4px;
+  height: 8px;
+  border-right: 1.5px solid white;
+  border-bottom: 1.5px solid white;
+  transform: rotate(42deg);
+}
+
+.check-dot,
+.legend-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+}
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 10px;
+  margin-bottom: 2px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgba(129, 139, 146, 0.12);
+}
+
+.metric-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-height: auto;
+  padding: 7px 7px 5px 7px;
+  border-radius: 10px;
+  border: 1px solid rgba(129, 139, 146, 0.18);
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 2px 8px rgba(71, 77, 82, 0.05), inset 0 1px rgba(255, 255, 255, 0.8);
+  transition: all 0.2s ease;
+}
+
+.metric-card:hover {
+  background: rgba(255, 255, 255, 0.65);
+  box-shadow: 0 4px 12px rgba(71, 77, 82, 0.08), inset 0 1px rgba(255, 255, 255, 0.8);
+}
+
+.metric-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+}
+
+.metric-icon-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 5px;
+  flex-shrink: 0;
+}
+
+.metric-icon {
+  width: 15px;
+  height: 15px;
+  color: white;
+}
+
+.metric-status-label {
+  flex: 1;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #2b3239;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.metric-value {
+  font-size: clamp(1.3rem, 3vw, 2.85rem);
+  line-height: 1.15;
+  letter-spacing: 0;
+  font-weight: 700;
+  color: #2c3b3f;
+  font-family: 'PP Neue Montreal', 'Avenir Next', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  margin: 7px 0 0;
+  padding: 0;
+}
+
+.metric-description {
+  display: none;
+}
+
+.legend-row,
+.dropdown-button,
+.range-button,
+.check-item,
+.range-option,
+.tooltip-card,
+.tooltip-header,
+.tooltip-label,
+.tooltip-value,
+.metric-card,
+.metric-status-label,
+.metric-value,
+.filter-title,
+.section-label {
+  font-family: 'PP Neue Montreal', sans-serif;
+}
+
+.chart-panel {
+  width: 100%;
+  height: 340px;
+  margin-top: 10px;
+  margin-bottom: 8px;
+}
+
+.recharts-cartesian-grid-horizontal line {
+  stroke: rgba(122, 132, 139, 0.24);
+}
+
+.legend-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 2px solid rgba(129, 139, 146, 0.12);
+  color: #3d4d56;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tooltip-card {
+  min-width: 180px;
+  background: rgba(255,255,255,0.88);
+  border: 1px solid rgba(143, 153, 160, 0.22);
+  border-radius: 14px;
+  padding: 10px 12px 8px;
+  box-shadow: 0 12px 24px rgba(46, 53, 59, 0.12);
+}
+
+.tooltip-header {
+  margin-bottom: 8px;
+  font-size: 1.06rem;
+  font-weight: 700;
+  color: #2a343a;
+  text-align: left;
+}
+
+.tooltip-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.tooltip-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  color: #2b3940;
+}
+
+.tooltip-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+}
+
+.tooltip-value {
+  font-weight: 700;
+  color: #2f3c44;
+}
+
+@media (max-width: 1000px) {
+  .chart-header {
+    margin-bottom: 8px;
+  }
+
+  .filters-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .quick-filters-group {
+    flex-wrap: nowrap;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-shell {
+    padding: 18px;
+  }
+
+  .chart-card {
+    width: min(100vw - 24px, 100%);
+    padding: 18px 16px 14px;
+  }
+
+  .dropdown-button,
+  .range-button {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .date-range-filter {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .date-input-group {
+    width: 49%;
+    justify-content: space-between;
+  }
+
+  .date-input {
+    min-width: 0;
+    width: 100%;
+    text-align: right;
+  }
+
+  .stats-row {
+    grid-template-columns: 1fr;
+  }
+
+  .quick-filters-group {
+    flex-wrap: nowrap;
+  }
+}
